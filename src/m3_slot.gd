@@ -5,11 +5,11 @@ class_name Class_M3_Slot
 @export var gridLocation : Vector2i
 
 func _ready() -> void:
-	G.updateTileSize.connect(setSize)
-	G.updateGridCenter.connect(updateLocation)
-	G.updateTileGap.connect(updateLocation)
+	G.GM.updateTileSize.connect(setSize)
+	G.GM.updateGridCenter.connect(updateLocation)
+	G.GM.updateTileGap.connect(updateLocation)
 
-	setSize(G.tileSize)
+	setSize(G.GM.tileSize)
 
 func setSize(sizeValue : Vector2):
 	var imgSize = iconSprite.texture.get_size()
@@ -21,4 +21,8 @@ func setSize(sizeValue : Vector2):
 
 # input can be a few different things so unused for specificity
 func updateLocation(_v):
-	global_transform.origin = Vector2(gridLocation) * G.tileSize + G.gridCenter + ((Vector2(gridLocation) * G.tileGap))
+	global_transform.origin = Vector2(gridLocation) * G.GM.tileSize + G.GM.gridCenter + ((Vector2(gridLocation) * G.GM.tileGap))
+
+func removeSlot(slotToRemove : Vector2i):
+	if(slotToRemove == gridLocation):
+		queue_free()

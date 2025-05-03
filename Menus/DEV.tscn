@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bwj5rm18ka14o" path="res://src/dev.gd" id="1_htl6o"]
 
-[node name="Dev" type="Control" node_paths=PackedStringArray("TileSize_X_SpnBx", "TileSize_Y_SpnBx", "TileSize_X_HSldr", "TileSize_Y_HSldr", "TileSize_Lock_ChkBx", "GridOrigin_X_SpnBx", "GridOrigin_Y_SpnBx", "GridOrigin_X_HSldr", "GridOrigin_Y_HSldr")]
+[node name="Dev" type="Control" node_paths=PackedStringArray("MainTab", "TileSize_X_SpnBx", "TileSize_Y_SpnBx", "TileSize_X_HSldr", "TileSize_Y_HSldr", "TileSize_Lock_ChkBx", "GridOrigin_X_SpnBx", "GridOrigin_Y_SpnBx", "GridOrigin_X_HSldr", "GridOrigin_Y_HSldr", "TileGap_X_SpnBx", "TileGap_Y_SpnBx", "TileGap_X_HSldr", "TileGap_Y_HSldr", "TileGap_Lock_ChkBx")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,19 +11,25 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_htl6o")
-TileSize_X_SpnBx = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/TileSize_X_HB/TileSize_X_SpnBx")
-TileSize_Y_SpnBx = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/TileSize_Y_HB/TileSize_Y_SpnBx")
-TileSize_X_HSldr = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/TileSize_X_HB/TileSize_X_HSldr")
-TileSize_Y_HSldr = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/TileSize_Y_HB/TileSize_Y_HSldr")
-TileSize_Lock_ChkBx = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/TileSize_Lock_ChkBx")
+MainTab = NodePath("TabContainer")
+TileSize_X_SpnBx = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer/HBoxContainer2/TileSize_X_SpnBx")
+TileSize_Y_SpnBx = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer/HBoxContainer3/TileSize_Y_SpnBx")
+TileSize_X_HSldr = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer/HBoxContainer2/TileSize_X_HSldr")
+TileSize_Y_HSldr = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer/HBoxContainer3/TileSize_Y_HSldr")
+TileSize_Lock_ChkBx = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer/HBoxContainer/TileSize_Lock_ChkBx")
 GridOrigin_X_SpnBx = NodePath("TabContainer/Grid/VBoxContainer/Grid_Origin/GridOrigin_X_HB/GridOrigin_X_SpnBx")
 GridOrigin_Y_SpnBx = NodePath("TabContainer/Grid/VBoxContainer/Grid_Origin/GridOrigin_Y_HB/GridOrigin_Y_SpnBx")
 GridOrigin_X_HSldr = NodePath("TabContainer/Grid/VBoxContainer/Grid_Origin/GridOrigin_X_HB/GridOrigin_X_HSldr")
 GridOrigin_Y_HSldr = NodePath("TabContainer/Grid/VBoxContainer/Grid_Origin/GridOrigin_Y_HB/GridOrigin_Y_HSldr")
+TileGap_X_SpnBx = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer3/HBoxContainer2/TileGap_X_SpnBx")
+TileGap_Y_SpnBx = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer3/HBoxContainer3/TileGap_Y_SpnBx")
+TileGap_X_HSldr = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer3/HBoxContainer2/TileGap_X_HSldr")
+TileGap_Y_HSldr = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer3/HBoxContainer3/TileGap_Y_HSldr")
+TileGap_Lock_ChkBx = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer3/HBoxContainer/TileGap_Lock_ChkBx")
 
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 1
-offset_right = 58.0
+offset_right = 325.0
 offset_bottom = 31.0
 mouse_filter = 0
 theme_override_constants/outline_size = 5
@@ -55,50 +61,204 @@ theme_override_constants/outline_size = 5
 text = "Tiles"
 horizontal_alignment = 1
 
-[node name="TileSize_Lock_ChkBx" type="CheckBox" parent="TabContainer/Grid/VBoxContainer/Tiles_HB"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Grid/VBoxContainer/Tiles_HB"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Size"
+
+[node name="TileSize_Lock_ChkBx" type="CheckBox" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 button_pressed = true
-text = "TileSize Lock XY"
+text = "Lock"
 
-[node name="TileSize_X_HB" type="HBoxContainer" parent="TabContainer/Grid/VBoxContainer/Tiles_HB"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/TileSize_X_HB"]
-layout_mode = 2
-text = "TileSize X"
-
-[node name="TileSize_X_SpnBx" type="SpinBox" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/TileSize_X_HB"]
+[node name="TileSize_X_SpnBx" type="SpinBox" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 min_value = 8.0
 max_value = 256.0
 value = 99.0
+prefix = "X:"
 custom_arrow_step = 1.0
 
-[node name="TileSize_X_HSldr" type="HSlider" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/TileSize_X_HB"]
+[node name="TileSize_X_HSldr" type="HSlider" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
 size_flags_vertical = 4
 max_value = 256.0
 
-[node name="TileSize_Y_HB" type="HBoxContainer" parent="TabContainer/Grid/VBoxContainer/Tiles_HB"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/TileSize_Y_HB"]
-layout_mode = 2
-text = "TileSize Y"
-
-[node name="TileSize_Y_SpnBx" type="SpinBox" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/TileSize_Y_HB"]
+[node name="TileSize_Y_SpnBx" type="SpinBox" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 min_value = 8.0
 max_value = 256.0
 value = 99.0
+prefix = "Y:"
 custom_arrow_step = 1.0
 
-[node name="TileSize_Y_HSldr" type="HSlider" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/TileSize_Y_HB"]
+[node name="TileSize_Y_HSldr" type="HSlider" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer/HBoxContainer3"]
 custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
 size_flags_vertical = 4
 max_value = 256.0
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Gap"
+
+[node name="TileGap_Lock_ChkBx" type="CheckBox" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer3/HBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Lock"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer3"]
+layout_mode = 2
+
+[node name="TileGap_X_SpnBx" type="SpinBox" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer3/HBoxContainer2"]
+layout_mode = 2
+max_value = 64.0
+value = 8.0
+prefix = "X:"
+custom_arrow_step = 1.0
+
+[node name="TileGap_X_HSldr" type="HSlider" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer3/HBoxContainer2"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 64.0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer3"]
+layout_mode = 2
+
+[node name="TileGap_Y_SpnBx" type="SpinBox" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer3/HBoxContainer3"]
+layout_mode = 2
+max_value = 64.0
+value = 8.0
+prefix = "Y:"
+custom_arrow_step = 1.0
+
+[node name="TileGap_Y_HSldr" type="HSlider" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer3/HBoxContainer3"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 64.0
+
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Grid/VBoxContainer/Tiles_HB"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Grid/VBoxContainer/Tiles_HB"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="NewTile_Btn" type="Button" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "New Tile [+]"
+
+[node name="RemoveTile_Btn" type="Button" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Remove Tile [-]"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="PreviousTile_Btn" type="Button" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "< Previous Tile"
+
+[node name="TileSelect_X_SpnBx" type="SpinBox" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+min_value = -50.0
+max_value = 50.0
+prefix = "X:"
+
+[node name="TileSelect_Y_SpnBx" type="SpinBox" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+min_value = -50.0
+max_value = 50.0
+prefix = "Y:"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="NextTile_Btn" type="Button" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Next Tile >"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="SaveGrid_Btn" type="Button" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Save Grid [*]"
+
+[node name="GridList_OptBx" type="OptionButton" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text_overrun_behavior = 3
+selected = 0
+fit_to_longest_item = false
+item_count = 4
+popup/item_0/text = "Grid List"
+popup/item_0/id = 1
+popup/item_1/text = "New Grid"
+popup/item_1/id = 0
+popup/item_2/text = "Another Grid"
+popup/item_2/id = 2
+popup/item_3/text = "Some Other Grid that has a long name that is too long for this"
+popup/item_3/id = 3
+
+[node name="LoadGrid_btn" type="Button" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Load Grid [*]"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TextEdit" type="TextEdit" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+placeholder_text = "New Grid Name"
+scroll_fit_content_height = true
+
+[node name="NewTile_Btn" type="Button" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Add To Grid List"
 
 [node name="ColorRect" type="ColorRect" parent="TabContainer/Grid/VBoxContainer/Tiles_HB"]
 custom_minimum_size = Vector2(0, 1)
@@ -157,11 +317,16 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 max_value = 2000.0
 
-[connection signal="toggled" from="TabContainer/Grid/VBoxContainer/Tiles_HB/TileSize_Lock_ChkBx" to="." method="_on_chk_bx_tile_size_lock_toggled"]
-[connection signal="value_changed" from="TabContainer/Grid/VBoxContainer/Tiles_HB/TileSize_X_HB/TileSize_X_SpnBx" to="." method="_on_spn_bx_tile_size_x_value_changed"]
-[connection signal="value_changed" from="TabContainer/Grid/VBoxContainer/Tiles_HB/TileSize_X_HB/TileSize_X_HSldr" to="." method="_on_h_sldr_tile_size_x_value_changed"]
-[connection signal="value_changed" from="TabContainer/Grid/VBoxContainer/Tiles_HB/TileSize_Y_HB/TileSize_Y_SpnBx" to="." method="_on_spn_bx_tile_size_y_value_changed"]
-[connection signal="value_changed" from="TabContainer/Grid/VBoxContainer/Tiles_HB/TileSize_Y_HB/TileSize_Y_HSldr" to="." method="_on_h_sldr_tile_size_y_value_changed"]
+[connection signal="toggled" from="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer/HBoxContainer/TileSize_Lock_ChkBx" to="." method="_on_chk_bx_tile_size_lock_toggled"]
+[connection signal="value_changed" from="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer/HBoxContainer2/TileSize_X_SpnBx" to="." method="_on_spn_bx_tile_size_x_value_changed"]
+[connection signal="value_changed" from="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer/HBoxContainer2/TileSize_X_HSldr" to="." method="_on_h_sldr_tile_size_x_value_changed"]
+[connection signal="value_changed" from="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer/HBoxContainer3/TileSize_Y_SpnBx" to="." method="_on_spn_bx_tile_size_y_value_changed"]
+[connection signal="value_changed" from="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer/HBoxContainer3/TileSize_Y_HSldr" to="." method="_on_h_sldr_tile_size_y_value_changed"]
+[connection signal="toggled" from="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer3/HBoxContainer/TileGap_Lock_ChkBx" to="." method="_on_tile_gap_lock_chk_bx_toggled"]
+[connection signal="value_changed" from="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer3/HBoxContainer2/TileGap_X_SpnBx" to="." method="_on_tile_gap_x_spn_bx_value_changed"]
+[connection signal="value_changed" from="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer3/HBoxContainer2/TileGap_X_HSldr" to="." method="_on_tile_gap_x_h_sldr_value_changed"]
+[connection signal="value_changed" from="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer3/HBoxContainer3/TileGap_Y_SpnBx" to="." method="_on_tile_gap_y_spn_bx_value_changed"]
+[connection signal="value_changed" from="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer3/HBoxContainer3/TileGap_Y_HSldr" to="." method="_on_tile_gap_y_h_sldr_value_changed"]
 [connection signal="pressed" from="TabContainer/Grid/VBoxContainer/Grid_Origin/Btn_GridOrigin_Center" to="." method="_on_btn_grid_origin_center_pressed"]
 [connection signal="value_changed" from="TabContainer/Grid/VBoxContainer/Grid_Origin/GridOrigin_X_HB/GridOrigin_X_SpnBx" to="." method="_on_grid_origin_x_spn_bx_value_changed"]
 [connection signal="value_changed" from="TabContainer/Grid/VBoxContainer/Grid_Origin/GridOrigin_X_HB/GridOrigin_X_HSldr" to="." method="_on_grid_origin_x_h_sldr_value_changed"]

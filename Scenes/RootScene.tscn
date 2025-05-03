@@ -1,11 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://i5w0p6jn3gnk"]
+[gd_scene load_steps=3 format=3 uid="uid://i5w0p6jn3gnk"]
 
-[ext_resource type="Script" uid="uid://83rfjowwwjjq" path="res://src/GridManager.gd" id="1_431s3"]
 [ext_resource type="Texture2D" uid="uid://b0l02k686e3v8" path="res://Assets/match-3-art-pack/match_3_art_pack/bg/cave/cave_bg.PNG" id="1_kvlpo"]
 [ext_resource type="PackedScene" uid="uid://mxx7wbwfml8f" path="res://Menus/DEV.tscn" id="3_431s3"]
 
 [node name="RootScene" type="Node2D"]
-script = ExtResource("1_431s3")
+z_index = -1
 
 [node name="CaveBg" type="Sprite2D" parent="."]
 position = Vector2(561, 346)
