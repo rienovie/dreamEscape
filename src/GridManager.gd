@@ -5,6 +5,8 @@ signal updateTileSize(newSize)
 signal updateGridCenter(newSize)
 signal updateTileGap(newSize)
 
+var currentGrid : Dictionary
+
 var gridCenter = Vector2(0.0,0.0) :
 	set(value):
 		gridCenter = value
@@ -39,9 +41,21 @@ func _ready() -> void:
 	addTile(Vector2i(-1,-1))
 
 func addTile(location : Vector2i):
+	if(currentGrid.has(location)):
+		push_warning("Attempted to add a tile that already exists at location: ",location)
+		return
 	var newTile : Class_M3_Slot = tileScene.instantiate()
 	newTile.gridLocation = location
+	currentGrid.set(location,newTile)
 	add_child(newTile)
+	print("Added tile at:",location)
 
-func removeTile(_location : Vector2i):
-	pass
+func killGrid() -> void:
+	for item in currentGrid.values():
+		item.removeSlot()
+	currentGrid.clear()
+
+func removeTile(location : Vector2i):
+	currentGrid.get(location).removeSlot()
+	currentGrid.erase(location)
+	print("Removed tile at:",location)

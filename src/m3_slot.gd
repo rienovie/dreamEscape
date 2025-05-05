@@ -9,7 +9,7 @@ func _ready() -> void:
 	G.GM.updateGridCenter.connect(updateLocation)
 	G.GM.updateTileGap.connect(updateLocation)
 
-	setSize(G.GM.tileSize)
+	updateIcon()
 
 func setSize(sizeValue : Vector2):
 	var imgSize = iconSprite.texture.get_size()
@@ -23,6 +23,9 @@ func setSize(sizeValue : Vector2):
 func updateLocation(_v):
 	global_transform.origin = Vector2(gridLocation) * G.GM.tileSize + G.GM.gridCenter + ((Vector2(gridLocation) * G.GM.tileGap))
 
-func removeSlot(slotToRemove : Vector2i):
-	if(slotToRemove == gridLocation):
-		queue_free()
+func removeSlot():
+	queue_free()
+
+func updateIcon() -> void:
+	iconSprite.texture = G.m3SlotTexture
+	setSize(G.GM.tileSize)

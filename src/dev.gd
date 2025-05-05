@@ -2,6 +2,7 @@ extends Node
 
 @export_category("Misc")
 @export var MainTab : TabContainer
+@export var SlotTexture_OptBx : OptionButton
 
 @export_category("Tile Size")
 @export var TileSize_X_SpnBx : SpinBox
@@ -23,6 +24,18 @@ extends Node
 @export var TileGap_Y_HSldr : HSlider
 @export var TileGap_Lock_ChkBx : CheckBox
 
+@export_category("Grid Edit")
+@export var AddTile_Btn : Button
+@export var RemoveTile_Btn : Button
+@export var SaveGrid_Btn : Button
+@export var LoadGrid_Btn : Button
+@export var CreateGrid_Btn : Button
+@export var TileSelect_X_SpnBx : SpinBox
+@export var TileSelect_Y_SpnBx : SpinBox
+@export var GridList_OptBx : OptionButton
+@export var NewGrid_TxtBx : TextEdit
+@export var ClearGrid_Btn : Button
+
 var bTileSize_Lock : bool = true :
 	set(value):
 		bTileSize_Lock = value
@@ -37,6 +50,11 @@ func _ready() -> void:
 	# for some reason always selects the first tab even when set to -1 in editor
 	MainTab.current_tab = -1
 
+	setItemValues()
+	populateSlotTexturesList()
+
+
+func setItemValues() -> void:
 	TileSize_X_HSldr.value = G.GM.tileSize.x
 	TileSize_Y_HSldr.value = G.GM.tileSize.y
 	TileSize_X_SpnBx.value = G.GM.tileSize.x
@@ -51,6 +69,10 @@ func _ready() -> void:
 	TileGap_X_SpnBx.value = G.GM.tileGap.x
 	TileGap_Y_SpnBx.value = G.GM.tileGap.y
 	TileGap_Lock_ChkBx.button_pressed = bTileGap_Lock
+
+func populateSlotTexturesList() -> void:
+	#TODO: working here
+	pass
 
 func _on_spn_bx_tile_size_x_value_changed(value: float) -> void:
 	if(value == G.GM.tileSize.x):
@@ -154,3 +176,22 @@ func _on_tile_gap_y_h_sldr_value_changed(value:float) -> void:
 		return
 	if(value != TileGap_Y_SpnBx.value):
 		TileGap_Y_SpnBx.value = value
+
+func _on_clear_grid_btn_pressed() -> void:
+	G.GM.killGrid()
+	TileSelect_X_SpnBx.value = 0
+	TileSelect_Y_SpnBx.value = 0
+
+func _on_add_tile_btn_pressed() -> void:
+	G.GM.addTile(round(Vector2(TileSelect_X_SpnBx.value,TileSelect_Y_SpnBx.value)))
+
+func _on_print_grid_btn_pressed() -> void:
+	print("---Grd---")
+	for item in G.GM.currentGrid:
+		print(item)
+	print("---End---")
+
+func _on_remove_tile_btn_pressed() -> void:
+	var location = round(Vector2(TileSelect_X_SpnBx.value,TileSelect_Y_SpnBx.value))
+	G.GM.removeTile(location)
+
