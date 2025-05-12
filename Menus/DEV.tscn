@@ -5,7 +5,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_htl6o"]
 bg_color = Color(0.25, 0.25, 0.25, 0.784314)
 
-[node name="Dev" type="Control" node_paths=PackedStringArray("MainTab", "TileSize_X_SpnBx", "TileSize_Y_SpnBx", "TileSize_X_HSldr", "TileSize_Y_HSldr", "TileSize_Lock_ChkBx", "GridOrigin_X_SpnBx", "GridOrigin_Y_SpnBx", "GridOrigin_X_HSldr", "GridOrigin_Y_HSldr", "TileGap_X_SpnBx", "TileGap_Y_SpnBx", "TileGap_X_HSldr", "TileGap_Y_HSldr", "TileGap_Lock_ChkBx", "AddTile_Btn", "RemoveTile_Btn", "SaveGrid_Btn", "LoadGrid_Btn", "CreateGrid_Btn", "TileSelect_X_SpnBx", "TileSelect_Y_SpnBx", "GridList_OptBx", "NewGrid_TxtBx")]
+[node name="Dev" type="Control" node_paths=PackedStringArray("MainTab", "SlotTexture_OptBx", "TileSize_X_SpnBx", "TileSize_Y_SpnBx", "TileSize_X_HSldr", "TileSize_Y_HSldr", "TileSize_Lock_ChkBx", "GridOrigin_X_SpnBx", "GridOrigin_Y_SpnBx", "GridOrigin_X_HSldr", "GridOrigin_Y_HSldr", "TileGap_X_SpnBx", "TileGap_Y_SpnBx", "TileGap_X_HSldr", "TileGap_Y_HSldr", "TileGap_Lock_ChkBx", "AddTile_Btn", "RemoveTile_Btn", "SaveGrid_Btn", "LoadGrid_Btn", "CreateGrid_Btn", "TileSelect_X_SpnBx", "TileSelect_Y_SpnBx", "GridList_OptBx", "NewGrid_TxtBx")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,6 +15,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_htl6o")
 MainTab = NodePath("TabContainer")
+SlotTexture_OptBx = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer/SlotTexture_OptBx")
 TileSize_X_SpnBx = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer/HBoxContainer2/TileSize_X_SpnBx")
 TileSize_Y_SpnBx = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer/HBoxContainer3/TileSize_Y_SpnBx")
 TileSize_X_HSldr = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer/HBoxContainer2/TileSize_X_HSldr")
@@ -84,7 +85,7 @@ size_flags_horizontal = 4
 theme_override_constants/outline_size = 3
 text = "Slot Texture"
 
-[node name="GridList_OptBx" type="OptionButton" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer"]
+[node name="SlotTexture_OptBx" type="OptionButton" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer"]
 custom_minimum_size = Vector2(250, 30)
 layout_mode = 2
 text_overrun_behavior = 3

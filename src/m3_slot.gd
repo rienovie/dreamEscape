@@ -27,5 +27,5 @@ func removeSlot():
 	queue_free()
 
 func updateIcon() -> void:
-	iconSprite.texture = G.m3SlotTexture
+	iconSprite.texture = G.m3Slot.textures.pick_random()
 	setSize(G.GM.tileSize)

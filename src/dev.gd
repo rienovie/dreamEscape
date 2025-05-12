@@ -71,8 +71,10 @@ func setItemValues() -> void:
 	TileGap_Lock_ChkBx.button_pressed = bTileGap_Lock
 
 func populateSlotTexturesList() -> void:
-	#TODO: working here
-	pass
+	SlotTexture_OptBx.clear()
+
+	for i in G.m3Slot_List:
+		SlotTexture_OptBx.add_item(i.name)
 
 func _on_spn_bx_tile_size_x_value_changed(value: float) -> void:
 	if(value == G.GM.tileSize.x):

@@ -2,7 +2,11 @@ extends Node
 
 var GM : Class_Grid_Manager
 
-var m3SlotTexture : Texture2D = preload("res://Assets/match-3-art-pack/match_3_art_pack/bg/cave/cave_bricks_01.png")
+var m3Slot : class_data_m3_slot = preload("res://Data/UI/Match3/TileSlots/data_m3_slot_basic.tres")
+
+var m3Slot_List : Array[class_data_m3_slot] = [
+	preload("res://Data/UI/Match3/TileSlots/data_m3_slot_basic.tres"),
+]
 
 func _ready() -> void:
 	if(!GM):
