@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="class_data_m3_slot" load_steps=5 format=3 uid="uid://bo7bwtoq2ukpj"]
+
+[ext_resource type="Script" uid="uid://cyvoe0xji7uhm" path="res://src/Data_M3_Slot.gd" id="1_5xnvh"]
+[ext_resource type="Texture2D" uid="uid://bnnjf62rjv4pt" path="res://Assets/match-3-art-pack/match_3_art_pack/bg/grassland/grassland_bricks_01.png" id="2_4abr5"]
+[ext_resource type="Texture2D" uid="uid://cbn1pprl78lxo" path="res://Assets/match-3-art-pack/match_3_art_pack/bg/grassland/grassland_bricks_02.PNG" id="3_ge8sh"]
+[ext_resource type="Texture2D" uid="uid://4osegjjjtagb" path="res://Assets/match-3-art-pack/match_3_art_pack/bg/grassland/grassland_bricks_03.PNG" id="4_nyw5q"]
+
+[resource]
+script = ExtResource("1_5xnvh")
+textures = Array[Texture2D]([ExtResource("2_4abr5"), ExtResource("3_ge8sh"), ExtResource("4_nyw5q")])
+metadata/_custom_type_script = "uid://cyvoe0xji7uhm"

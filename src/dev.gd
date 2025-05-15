@@ -3,6 +3,8 @@ extends Node
 @export_category("Misc")
 @export var MainTab : TabContainer
 @export var SlotTexture_OptBx : OptionButton
+@export var Timer_Second : Timer
+@export var TileLbl : Label
 
 @export_category("Tile Size")
 @export var TileSize_X_SpnBx : SpinBox
@@ -53,6 +55,12 @@ func _ready() -> void:
 	setItemValues()
 	populateSlotTexturesList()
 
+	Timer_Second.connect("timeout",tick_sec)
+
+# Hooked into a timer repeating every second
+func tick_sec() -> void:
+	TileLbl.text = str("Tiles [",G.GM.currentGrid.size(),"]")
+
 
 func setItemValues() -> void:
 	TileSize_X_HSldr.value = G.GM.tileSize.x
@@ -73,8 +81,8 @@ func setItemValues() -> void:
 func populateSlotTexturesList() -> void:
 	SlotTexture_OptBx.clear()
 
-	for i in G.m3Slot_List:
-		SlotTexture_OptBx.add_item(i.name)
+	for i in G.m3Slot_List.keys():
+		SlotTexture_OptBx.add_item(i)
 
 func _on_spn_bx_tile_size_x_value_changed(value: float) -> void:
 	if(value == G.GM.tileSize.x):
@@ -196,4 +204,8 @@ func _on_print_grid_btn_pressed() -> void:
 func _on_remove_tile_btn_pressed() -> void:
 	var location = round(Vector2(TileSelect_X_SpnBx.value,TileSelect_Y_SpnBx.value))
 	G.GM.removeTile(location)
+
+func _on_slot_texture_opt_bx_item_selected(index:int) -> void:
+	G.m3Slot = G.m3Slot_List.get(SlotTexture_OptBx.get_item_text(index))
+	
 

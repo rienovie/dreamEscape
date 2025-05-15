@@ -1,12 +1,11 @@
 [gd_resource type="Resource" script_class="class_data_m3_slot" load_steps=5 format=3 uid="uid://cta27gacpt57p"]
 
 [ext_resource type="Script" uid="uid://cyvoe0xji7uhm" path="res://src/Data_M3_Slot.gd" id="1_2h03a"]
-[ext_resource type="Texture2D" uid="uid://coycw0774vfk1" path="res://Assets/black-crusader-ui/BlackCrusaderUI_png/BlackCrusaderUI_el_09.png" id="2_n6x0l"]
-[ext_resource type="Texture2D" uid="uid://di2nst7rhpoec" path="res://Assets/black-crusader-ui/BlackCrusaderUI_png/BlackCrusaderUI_el_11.png" id="3_eruub"]
-[ext_resource type="Texture2D" uid="uid://nhlo7icbss8s" path="res://Assets/black-crusader-ui/BlackCrusaderUI_png/BlackCrusaderUI_el_12.png" id="4_cclaf"]
+[ext_resource type="Texture2D" uid="uid://cx4geyv836hef" path="res://Assets/match-3-art-pack/match_3_art_pack/bg/cave/cave_bricks_01.png" id="2_n6x0l"]
+[ext_resource type="Texture2D" uid="uid://dsnbbc3n2wha3" path="res://Assets/match-3-art-pack/match_3_art_pack/bg/cave/cave_bricks_02.png" id="3_eruub"]
+[ext_resource type="Texture2D" uid="uid://mqi3gw6qv716" path="res://Assets/match-3-art-pack/match_3_art_pack/bg/cave/cave_bricks_03.png" id="4_cclaf"]
 
 [resource]
 script = ExtResource("1_2h03a")
-name = "Basic"
 textures = Array[Texture2D]([ExtResource("2_n6x0l"), ExtResource("3_eruub"), ExtResource("4_cclaf")])
 metadata/_custom_type_script = "uid://cyvoe0xji7uhm"

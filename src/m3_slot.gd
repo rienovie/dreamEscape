@@ -8,6 +8,7 @@ func _ready() -> void:
 	G.GM.updateTileSize.connect(setSize)
 	G.GM.updateGridCenter.connect(updateLocation)
 	G.GM.updateTileGap.connect(updateLocation)
+	G.refesh_M3_Slot_Textures.connect(updateIcon)
 
 	updateIcon()
 

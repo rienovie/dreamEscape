@@ -5,7 +5,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_htl6o"]
 bg_color = Color(0.25, 0.25, 0.25, 0.784314)
 
-[node name="Dev" type="Control" node_paths=PackedStringArray("MainTab", "SlotTexture_OptBx", "TileSize_X_SpnBx", "TileSize_Y_SpnBx", "TileSize_X_HSldr", "TileSize_Y_HSldr", "TileSize_Lock_ChkBx", "GridOrigin_X_SpnBx", "GridOrigin_Y_SpnBx", "GridOrigin_X_HSldr", "GridOrigin_Y_HSldr", "TileGap_X_SpnBx", "TileGap_Y_SpnBx", "TileGap_X_HSldr", "TileGap_Y_HSldr", "TileGap_Lock_ChkBx", "AddTile_Btn", "RemoveTile_Btn", "SaveGrid_Btn", "LoadGrid_Btn", "CreateGrid_Btn", "TileSelect_X_SpnBx", "TileSelect_Y_SpnBx", "GridList_OptBx", "NewGrid_TxtBx")]
+[node name="Dev" type="Control" node_paths=PackedStringArray("MainTab", "SlotTexture_OptBx", "Timer_Second", "TileLbl", "TileSize_X_SpnBx", "TileSize_Y_SpnBx", "TileSize_X_HSldr", "TileSize_Y_HSldr", "TileSize_Lock_ChkBx", "GridOrigin_X_SpnBx", "GridOrigin_Y_SpnBx", "GridOrigin_X_HSldr", "GridOrigin_Y_HSldr", "TileGap_X_SpnBx", "TileGap_Y_SpnBx", "TileGap_X_HSldr", "TileGap_Y_HSldr", "TileGap_Lock_ChkBx", "AddTile_Btn", "RemoveTile_Btn", "SaveGrid_Btn", "LoadGrid_Btn", "CreateGrid_Btn", "TileSelect_X_SpnBx", "TileSelect_Y_SpnBx", "GridList_OptBx", "NewGrid_TxtBx", "ClearGrid_Btn")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,6 +16,8 @@ mouse_filter = 2
 script = ExtResource("1_htl6o")
 MainTab = NodePath("TabContainer")
 SlotTexture_OptBx = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer/SlotTexture_OptBx")
+Timer_Second = NodePath("Timer_Sec")
+TileLbl = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/MainTile_Lbl")
 TileSize_X_SpnBx = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer/HBoxContainer2/TileSize_X_SpnBx")
 TileSize_Y_SpnBx = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer/HBoxContainer3/TileSize_Y_SpnBx")
 TileSize_X_HSldr = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer/HBoxContainer2/TileSize_X_HSldr")
@@ -39,6 +41,7 @@ TileSelect_X_SpnBx = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxCont
 TileSelect_Y_SpnBx = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer/HBoxContainer/TileSelect_Y_SpnBx")
 GridList_OptBx = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer/HBoxContainer3/GridList_OptBx")
 NewGrid_TxtBx = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer/HBoxContainer4/NewGrid_TxtBx")
+ClearGrid_Btn = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer/HBoxContainer5/ClearGrid_Btn")
 
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 1
@@ -69,7 +72,7 @@ theme_override_constants/separation = 15
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="TabContainer/Grid/VBoxContainer/Tiles_HB"]
+[node name="MainTile_Lbl" type="Label" parent="TabContainer/Grid/VBoxContainer/Tiles_HB"]
 layout_mode = 2
 theme_override_constants/outline_size = 5
 text = "Tiles"
@@ -357,6 +360,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 max_value = 2000.0
 
+[node name="Timer_Sec" type="Timer" parent="."]
+autostart = true
+
+[connection signal="item_selected" from="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer/SlotTexture_OptBx" to="." method="_on_slot_texture_opt_bx_item_selected"]
 [connection signal="toggled" from="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer/HBoxContainer/TileSize_Lock_ChkBx" to="." method="_on_chk_bx_tile_size_lock_toggled"]
 [connection signal="value_changed" from="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer/HBoxContainer2/TileSize_X_SpnBx" to="." method="_on_spn_bx_tile_size_x_value_changed"]
 [connection signal="value_changed" from="TabContainer/Grid/VBoxContainer/Tiles_HB/HBoxContainer2/VBoxContainer/HBoxContainer2/TileSize_X_HSldr" to="." method="_on_h_sldr_tile_size_x_value_changed"]

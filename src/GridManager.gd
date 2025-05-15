@@ -56,6 +56,9 @@ func killGrid() -> void:
 	currentGrid.clear()
 
 func removeTile(location : Vector2i):
+	if(!currentGrid.has(location)):
+		push_warning("Attempted to remove a tile that does not exist at location: ",location)
+		return
 	currentGrid.get(location).removeSlot()
 	currentGrid.erase(location)
 	print("Removed tile at:",location)
