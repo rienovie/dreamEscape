@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1tpf1t088qrl"]
+
+[ext_resource type="Texture2D" uid="uid://b5dmj62fm3jdd" path="res://Assets/gemsicons/gemsicons/09.PNG" id="1_6a8hy"]
+[ext_resource type="Script" uid="uid://b6qaj8jhfsa0w" path="res://src/m3_gem.gd" id="1_d011u"]
+
+[sub_resource type="Curve" id="Curve_bo72p"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.292308, 0.536855), 0.0, 0.0, 0, 0, Vector2(0.750769, 0.185504), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[node name="M3Gem" type="Node2D" node_paths=PackedStringArray("iconSprite")]
+script = ExtResource("1_d011u")
+iconSprite = NodePath("Sprite2D")
+movementCurve = SubResource("Curve_bo72p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_6a8hy")

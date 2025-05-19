@@ -8,4 +8,11 @@
 [resource]
 script = ExtResource("1_ojqbt")
 textures = Array[Texture2D]([ExtResource("2_3sqtx"), ExtResource("3_uykbg"), ExtResource("4_4rkqf")])
+gap_useTextures = false
+gap_Textures = Array[Texture2D]([])
+gap_useSpecificTextureIndex = false
+gap_values = Array[int]([2])
+gap_useSpecificValueIndex = false
+gap_useColor = false
+gap_Color = Color(0, 0, 0, 1)
 metadata/_custom_type_script = "uid://cyvoe0xji7uhm"

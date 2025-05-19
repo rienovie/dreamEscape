@@ -28,6 +28,9 @@ func gridCenterToCenterScreen():
 
 var tileScene : PackedScene = preload("res://Scenes/m3_slot.tscn")
 
+# TODO: create gem resource type
+var currentGemTypes : Array
+
 func _ready() -> void:
 	gridCenterToCenterScreen()
 
@@ -62,3 +65,6 @@ func removeTile(location : Vector2i):
 	currentGrid.get(location).removeSlot()
 	currentGrid.erase(location)
 	print("Removed tile at:",location)
+
+func dropGem(_location : Vector2i) -> void:
+	pass

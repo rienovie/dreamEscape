@@ -9,6 +9,7 @@ var m3Slot : class_data_m3_slot = preload("res://Data/UI/Match3/TileSlots/data_m
 		m3Slot = value
 		refesh_M3_Slot_Textures.emit()
 
+# NOTE: manually adding each because dynamic loading would require an additional plugin or manually modifing the exported game
 var m3Slot_List : Dictionary [String, class_data_m3_slot] = {
 	"Cave" : preload("res://Data/UI/Match3/TileSlots/data_m3_slot_basic.tres"),
 	"Grass" : preload("res://Data/UI/Match3/TileSlots/data_m3_slot_grass.tres"),
