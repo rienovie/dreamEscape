@@ -22,7 +22,7 @@ func setSize(sizeValue : Vector2):
 
 # input can be a few different things so unused for specificity
 func updateLocation(_v):
-	global_transform.origin = Vector2(gridLocation) * G.GM.tileSize + G.GM.gridCenter + ((Vector2(gridLocation) * G.GM.tileGap))
+	global_transform.origin = G.GM.gridToWorldLocation(gridLocation)
 
 func removeSlot():
 	queue_free()

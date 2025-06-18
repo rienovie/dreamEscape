@@ -23,8 +23,23 @@ var tileGap = Vector2(5.0,5.0) :
 		updateTileGap.emit(value)
 
 func gridCenterToCenterScreen():
-	var vp = get_viewport().get_visible_rect().size
-	gridCenter = Vector2(vp.x / 2, vp.y / 2)
+	if currentGrid.is_empty():
+		gridCenter = get_viewport().get_visible_rect().size / 2.0
+		return
+
+	var keys = currentGrid.keys()
+	var gridMin : Vector2i = keys[0]
+	var gridMax : Vector2i = keys[0]
+	for i in range(1, keys.size()):
+		var key = keys[i]
+		gridMin.x = min(gridMin.x, key.x)
+		gridMin.y = min(gridMin.y, key.y)
+		gridMax.x = max(gridMax.x, key.x)
+		gridMax.y = max(gridMax.y, key.y)
+
+	var centerOfGrid : Vector2 = Vector2(gridMin) + (Vector2(gridMax - gridMin) / 2.0)
+	var totalTileSize = tileSize + tileGap
+	gridCenter = centerOfGrid * totalTileSize
 
 var tileScene : PackedScene = preload("res://Scenes/m3_slot.tscn")
 
@@ -32,16 +47,9 @@ var tileScene : PackedScene = preload("res://Scenes/m3_slot.tscn")
 var currentGemTypes : Array
 
 func _ready() -> void:
-	gridCenterToCenterScreen()
+	G.GSM.load_grid("3x3")
 
-	addTile(Vector2i(2,2))
-	addTile(Vector2i(0,0))
-	addTile(Vector2i(1,1))
-	addTile(Vector2i(3,3))
-	addTile(Vector2i(4,4))
-	addTile(Vector2i(5,5))
-	addTile(Vector2i(6,6))
-	addTile(Vector2i(-1,-1))
+	gridCenterToCenterScreen()
 
 func addTile(location : Vector2i):
 	if(currentGrid.has(location)):
@@ -68,3 +76,10 @@ func removeTile(location : Vector2i):
 
 func dropGem(_location : Vector2i) -> void:
 	pass
+
+# Relies on the gridCenter variable being set prior to call
+func gridToWorldLocation(gridLocation : Vector2i) -> Vector2:
+	var vp_center = get_viewport().get_visible_rect().size / 2.0
+	var totalTileSize = tileSize + tileGap
+	var output = vp_center + (Vector2(gridLocation) * totalTileSize) - gridCenter
+	return output

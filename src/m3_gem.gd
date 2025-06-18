@@ -1,4 +1,5 @@
 extends Node2D
+class_name Class_M3_Gem
 
 @export var iconSprite : Sprite2D
 @export var gridLocation : Vector2i
@@ -29,6 +30,6 @@ func removeGem():
 	queue_free()
 
 # TODO: make this function
-# func updateIcon() -> void:
-# 	iconSprite.texture = G.m3Slot.textures.pick_random()
-# 	setSize(G.GM.tileSize)
+func updateIcon() -> void:
+	iconSprite.texture = G.m3Slot.textures.pick_random()
+	setSize(G.GM.tileSize)

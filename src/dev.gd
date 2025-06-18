@@ -31,7 +31,8 @@ extends Node
 @export var RemoveTile_Btn : Button
 @export var SaveGrid_Btn : Button
 @export var LoadGrid_Btn : Button
-@export var CreateGrid_Btn : Button
+@export var DeleteGrid_Btn : Button
+@export var PopulateGrid_Btn : Button
 @export var TileSelect_X_SpnBx : SpinBox
 @export var TileSelect_Y_SpnBx : SpinBox
 @export var GridList_OptBx : OptionButton
@@ -54,6 +55,7 @@ func _ready() -> void:
 
 	setItemValues()
 	populateSlotTexturesList()
+	populate_saved_grids_list()
 
 	Timer_Second.connect("timeout",tick_sec)
 
@@ -83,6 +85,12 @@ func populateSlotTexturesList() -> void:
 
 	for i in G.m3Slot_List.keys():
 		SlotTexture_OptBx.add_item(i)
+
+func populate_saved_grids_list() -> void:
+	GridList_OptBx.clear()
+	var save_files = G.GSM.get_grid_names()
+	for file_name in save_files:
+		GridList_OptBx.add_item(file_name)
 
 func _on_spn_bx_tile_size_x_value_changed(value: float) -> void:
 	if(value == G.GM.tileSize.x):
@@ -193,7 +201,7 @@ func _on_clear_grid_btn_pressed() -> void:
 	TileSelect_Y_SpnBx.value = 0
 
 func _on_add_tile_btn_pressed() -> void:
-	G.GM.addTile(round(Vector2(TileSelect_X_SpnBx.value,TileSelect_Y_SpnBx.value)))
+	G.GM.addTile(Vector2i(round(TileSelect_X_SpnBx.value),round(TileSelect_Y_SpnBx.value)))
 
 func _on_print_grid_btn_pressed() -> void:
 	print("---Grd---")
@@ -202,10 +210,46 @@ func _on_print_grid_btn_pressed() -> void:
 	print("---End---")
 
 func _on_remove_tile_btn_pressed() -> void:
-	var location = round(Vector2(TileSelect_X_SpnBx.value,TileSelect_Y_SpnBx.value))
+	var location = Vector2i(round(TileSelect_X_SpnBx.value),round(TileSelect_Y_SpnBx.value))
 	G.GM.removeTile(location)
 
 func _on_slot_texture_opt_bx_item_selected(index:int) -> void:
 	G.m3Slot = G.m3Slot_List.get(SlotTexture_OptBx.get_item_text(index))
-	
 
+func _on_save_grid_btn_pressed() -> void:
+	var save_name = NewGrid_TxtBx.text
+	if save_name.is_empty():
+		push_warning("Save name cannot be empty.")
+		return
+	
+	G.GSM.save_grid(save_name)
+	populate_saved_grids_list()
+	NewGrid_TxtBx.clear()
+
+func _on_load_grid_btn_pressed() -> void:
+	if GridList_OptBx.get_selected_id() == -1:
+		push_warning("No save file selected.")
+		return
+	
+	var save_name = GridList_OptBx.get_item_text(GridList_OptBx.selected)
+	G.GSM.load_grid(save_name)
+	setItemValues()
+
+func _on_delete_grid_btn_pressed() -> void:
+	if GridList_OptBx.get_selected_id() == -1:
+		push_warning("No save file selected to delete.")
+		return
+	
+	var save_name = GridList_OptBx.get_item_text(GridList_OptBx.selected)
+	G.GSM.delete_grid(save_name)
+	populate_saved_grids_list()
+
+
+func _on_populate_grid_btn_pressed() -> void:
+	G.GM.killGrid()
+
+	for x in range(TileSelect_X_SpnBx.value):
+		for y in range(TileSelect_Y_SpnBx.value):
+			G.GM.addTile(Vector2i(x,y))
+
+	G.GM.gridCenterToCenterScreen()
