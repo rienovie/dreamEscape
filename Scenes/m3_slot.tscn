@@ -1,9 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://dgrtj6ll2mtgq"]
+[gd_scene load_steps=3 format=3 uid="uid://dgrtj6ll2mtgq"]
 
 [ext_resource type="Script" uid="uid://bqxwn53th4lgq" path="res://src/m3_slot.gd" id="1_1lu8h"]
+[ext_resource type="Texture2D" uid="uid://cdsm6ctcheg2b" path="res://Assets/dreamEscape/dropper_south.png" id="2_1lu8h"]
 
-[node name="Root" type="Node2D" node_paths=PackedStringArray("iconSprite")]
+[node name="Root" type="Node2D" node_paths=PackedStringArray("iconSprite", "dropperSprite")]
 script = ExtResource("1_1lu8h")
-iconSprite = NodePath("Icon")
+iconSprite = NodePath("SlotIcon")
+dropperSprite = NodePath("DropperIcon")
 
-[node name="Icon" type="Sprite2D" parent="."]
+[node name="SlotIcon" type="Sprite2D" parent="."]
+
+[node name="DropperIcon" type="Sprite2D" parent="."]
+z_index = 1
+texture = ExtResource("2_1lu8h")

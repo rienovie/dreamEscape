@@ -5,7 +5,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_htl6o"]
 bg_color = Color(0.25, 0.25, 0.25, 0.784314)
 
-[node name="Dev" type="Control" node_paths=PackedStringArray("MainTab", "SlotTexture_OptBx", "Timer_Second", "TileLbl", "TileSize_X_SpnBx", "TileSize_Y_SpnBx", "TileSize_X_HSldr", "TileSize_Y_HSldr", "TileSize_Lock_ChkBx", "GridOrigin_X_SpnBx", "GridOrigin_Y_SpnBx", "GridOrigin_X_HSldr", "GridOrigin_Y_HSldr", "TileGap_X_SpnBx", "TileGap_Y_SpnBx", "TileGap_X_HSldr", "TileGap_Y_HSldr", "TileGap_Lock_ChkBx", "AddTile_Btn", "RemoveTile_Btn", "SaveGrid_Btn", "LoadGrid_Btn", "DeleteGrid_Btn", "PopulateGrid_Btn", "TileSelect_X_SpnBx", "TileSelect_Y_SpnBx", "GridList_OptBx", "NewGrid_TxtBx", "ClearGrid_Btn")]
+[node name="Dev" type="Control" node_paths=PackedStringArray("MainTab", "SlotTexture_OptBx", "Timer_Second", "TileLbl", "TileSize_X_SpnBx", "TileSize_Y_SpnBx", "TileSize_X_HSldr", "TileSize_Y_HSldr", "TileSize_Lock_ChkBx", "GridOrigin_X_SpnBx", "GridOrigin_Y_SpnBx", "GridOrigin_X_HSldr", "GridOrigin_Y_HSldr", "TileGap_X_SpnBx", "TileGap_Y_SpnBx", "TileGap_X_HSldr", "TileGap_Y_HSldr", "TileGap_Lock_ChkBx", "AddTile_Btn", "RemoveTile_Btn", "SaveGrid_Btn", "LoadGrid_Btn", "DeleteGrid_Btn", "PopulateGrid_Btn", "TileSelect_X_SpnBx", "TileSelect_Y_SpnBx", "GridList_OptBx", "NewGrid_TxtBx", "ClearGrid_Btn", "Dropper_OptBx")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,6 +43,7 @@ TileSelect_Y_SpnBx = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxCont
 GridList_OptBx = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer/HBoxContainer3/GridList_OptBx")
 NewGrid_TxtBx = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer/HBoxContainer4/NewGrid_TxtBx")
 ClearGrid_Btn = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer/HBoxContainer5/ClearGrid_Btn")
+Dropper_OptBx = NodePath("TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer/HBoxContainer2/DropperType_OptBx")
 
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 1
@@ -251,6 +252,17 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Add [+]"
 
+[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="DropperType_OptBx" type="OptionButton" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Update Dropper"
+
 [node name="HBoxContainer3" type="HBoxContainer" parent="TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -423,6 +435,7 @@ autostart = true
 [connection signal="pressed" from="TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer/PopulateGrid_Btn" to="." method="_on_populate_grid_btn_pressed"]
 [connection signal="pressed" from="TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer/HBoxContainer/RemoveTile_Btn" to="." method="_on_remove_tile_btn_pressed"]
 [connection signal="pressed" from="TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer/HBoxContainer/AddTile_Btn" to="." method="_on_add_tile_btn_pressed"]
+[connection signal="pressed" from="TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer/HBoxContainer2/Button" to="." method="_on_update_dropper_btn_pressed"]
 [connection signal="pressed" from="TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer/HBoxContainer3/SaveGrid_Btn" to="." method="_on_save_grid_btn_pressed"]
 [connection signal="pressed" from="TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer/HBoxContainer3/LoadGrid_Btn" to="." method="_on_load_grid_btn_pressed"]
 [connection signal="pressed" from="TabContainer/Grid/VBoxContainer/Tiles_HB/VBoxContainer/HBoxContainer3/DeleteGrid_Btn" to="." method="_on_delete_grid_btn_pressed"]

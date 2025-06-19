@@ -10,6 +10,7 @@ func _process(_delta: float) -> void:
 	pass
 
 func _ready() -> void:
+	assert(iconSprite != null, "Icon sprite is null in gem")
 
 	# TODO: replace with updateIcon function later which will include this
 	setSize(G.GM.tileSize)

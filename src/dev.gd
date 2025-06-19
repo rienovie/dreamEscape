@@ -38,6 +38,7 @@ extends Node
 @export var GridList_OptBx : OptionButton
 @export var NewGrid_TxtBx : TextEdit
 @export var ClearGrid_Btn : Button
+@export var Dropper_OptBx : OptionButton
 
 var bTileSize_Lock : bool = true :
 	set(value):
@@ -56,6 +57,7 @@ func _ready() -> void:
 	setItemValues()
 	populateSlotTexturesList()
 	populate_saved_grids_list()
+	populate_dropper_list()
 
 	Timer_Second.connect("timeout",tick_sec)
 
@@ -85,6 +87,11 @@ func populateSlotTexturesList() -> void:
 
 	for i in G.m3Slot_List.keys():
 		SlotTexture_OptBx.add_item(i)
+
+func populate_dropper_list() -> void:
+	Dropper_OptBx.clear()
+	for type_name in Class_M3_Slot.dropper_type.keys():
+		Dropper_OptBx.add_item(type_name)
 
 func populate_saved_grids_list() -> void:
 	GridList_OptBx.clear()
@@ -253,3 +260,18 @@ func _on_populate_grid_btn_pressed() -> void:
 			G.GM.addTile(Vector2i(x,y))
 
 	G.GM.gridCenterToCenterScreen()
+
+func _on_update_dropper_btn_pressed() -> void:
+	var location = Vector2i(round(TileSelect_X_SpnBx.value),round(TileSelect_Y_SpnBx.value))
+	if !G.GM.currentGrid.has(location):
+		push_warning("No tile at location: " + str(location))
+		return
+
+	var tile : Class_M3_Slot = G.GM.currentGrid[location]
+	var selected_dropper_type_index = Dropper_OptBx.selected
+	var selected_dropper_type_name = Dropper_OptBx.get_item_text(selected_dropper_type_index)
+	
+	var dropper_type_value = Class_M3_Slot.dropper_type.get(selected_dropper_type_name)
+	
+	tile.dropperType = dropper_type_value
+	tile.updateDropper()

@@ -20,6 +20,13 @@ var m3Slot_List : Dictionary [String, class_data_m3_slot] = {
 	"Wood" : preload("res://Data/UI/Match3/TileSlots/data_m3_slot_wood.tres"),
 }
 
+var m3Dropper_List : Dictionary [String, Texture2D] = {
+	"South" : load("res://Assets/dreamEscape/dropper_south.png"),
+	"North" : load("res://Assets/dreamEscape/dropper_north.png"),
+	"West" : load("res://Assets/dreamEscape/dropper_west.png"),
+	"East" : load("res://Assets/dreamEscape/dropper_east.png")
+}
+
 var m3Gem_List : Dictionary [String, class_data_m3_gem]
 
 func _ready() -> void:

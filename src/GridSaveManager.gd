@@ -36,9 +36,7 @@ func _load_from_disk() -> void:
 
 	var parse_result = JSON.parse_string(json_string)
 
-	if parse_result == null:
-		push_error("Failed to parse JSON from grid save file: " + _full_path)
-		return
+	assert(parse_result != null, "parse_result is null in GridSaveManager")
 	
 	_grids = parse_result
 
