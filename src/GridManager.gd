@@ -50,6 +50,7 @@ func _ready() -> void:
 	G.GSM.load_grid("3x3")
 
 	gridCenterToCenterScreen()
+	determineFloorTiles()
 
 func addTile(location : Vector2i):
 	if(currentGrid.has(location)):
@@ -83,3 +84,35 @@ func gridToWorldLocation(gridLocation : Vector2i) -> Vector2:
 	var totalTileSize = tileSize + tileGap
 	var output = vp_center + (Vector2(gridLocation) * totalTileSize) - gridCenter
 	return output
+
+func assignFloorToTile(location : Vector2i, isVisible : bool = true) -> void:
+	print("Assigning floor to tile: ",location)
+	if(!currentGrid.has(location)):
+		push_warning("Attempted to assign a floor to a tile that does not exist at location: ",location)
+		return
+	currentGrid.get(location).floorIsVisible = isVisible
+
+func determineFloorTiles() -> void:
+	var dropperTiles = getAllDropperTiles()
+	var nextTile = Vector2i(0,0)
+	var prevTile = Vector2i(0,0)
+	for dropperTile in dropperTiles:
+		nextTile = dropperTile.gridLocation
+		while(nextTile in currentGrid):
+			prevTile = nextTile
+			if dropperTile.gravityDirection == Class_M3_Slot.gravity_direction.South:
+				nextTile.y += 1
+			elif dropperTile.gravityDirection == Class_M3_Slot.gravity_direction.North:
+				nextTile.y -= 1
+			elif dropperTile.gravityDirection == Class_M3_Slot.gravity_direction.West:
+				nextTile.x -= 1
+			elif dropperTile.gravityDirection == Class_M3_Slot.gravity_direction.East:
+				nextTile.x += 1
+		assignFloorToTile(prevTile)
+
+func getAllDropperTiles() -> Array:
+	var dropperTiles : Array = []
+	for tile in currentGrid.values():
+		if tile.dropperType != Class_M3_Slot.dropper_type.None:
+			dropperTiles.append(tile)
+	return dropperTiles

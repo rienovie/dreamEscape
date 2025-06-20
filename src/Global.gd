@@ -27,6 +27,13 @@ var m3Dropper_List : Dictionary [String, Texture2D] = {
 	"East" : load("res://Assets/dreamEscape/dropper_east.png")
 }
 
+var m3Floor_List : Dictionary [String, Texture2D] = {
+	"South" : load("res://Assets/dreamEscape/floor_south.png"),
+	"North" : load("res://Assets/dreamEscape/floor_north.png"),
+	"West" : load("res://Assets/dreamEscape/floor_west.png"),
+	"East" : load("res://Assets/dreamEscape/floor_east.png"),
+}
+
 var m3Gem_List : Dictionary [String, class_data_m3_gem]
 
 func _ready() -> void:

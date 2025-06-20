@@ -3,7 +3,6 @@ class_name Class_M3_Gem
 
 @export var iconSprite : Sprite2D
 @export var gridLocation : Vector2i
-
 @export var movementCurve : Curve
 
 func _process(_delta: float) -> void:
@@ -12,8 +11,7 @@ func _process(_delta: float) -> void:
 func _ready() -> void:
 	assert(iconSprite != null, "Icon sprite is null in gem")
 
-	# TODO: replace with updateIcon function later which will include this
-	setSize(G.GM.tileSize)
+	updateIcon()
 
 func setSize(sizeValue : Vector2):
 	var imgSize = iconSprite.texture.get_size()
@@ -30,7 +28,7 @@ func updateLocation(_v):
 func removeGem():
 	queue_free()
 
-# TODO: make this function
 func updateIcon() -> void:
 	iconSprite.texture = G.m3Slot.textures.pick_random()
 	setSize(G.GM.tileSize)
+

@@ -59,7 +59,12 @@ func save_grid(save_name: String) -> void:
 
 	var tiles = []
 	for pos in G.GM.currentGrid:
-		tiles.append([pos.x, pos.y])
+		var slot : Class_M3_Slot = G.GM.currentGrid[pos]
+		var dropper_val : int = Class_M3_Slot.dropper_type.None
+		if slot != null:
+			dropper_val = slot.dropperType
+		# Store x, y, and dropper value (int). Provides backward compatibility if additional fields are added.
+		tiles.append([pos.x, pos.y, dropper_val])
 	
 	_grids[save_name] = tiles
 	_save_to_disk()
@@ -74,8 +79,17 @@ func load_grid(save_name: String) -> void:
 	
 	var tiles = _grids[save_name]
 	for pos_array in tiles:
-		G.GM.addTile(Vector2i(pos_array[0], pos_array[1]))
+		var pos := Vector2i(pos_array[0], pos_array[1])
+		G.GM.addTile(pos)
+		# If dropper info saved (array length >= 3), restore it
+		if pos_array.size() >= 3:
+			var dropper_val = pos_array[2]
+			if G.GM.currentGrid.has(pos):
+				var tile : Class_M3_Slot = G.GM.currentGrid[pos]
+				tile.dropperType = dropper_val
+				tile.updateDropper()
 	
+	G.GM.determineFloorTiles()
 	G.GM.gridCenterToCenterScreen()
 	print("Grid loaded: " + save_name)
 
